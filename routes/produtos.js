@@ -7,10 +7,9 @@ var router = express.Router(); // Criando um 'roteador'
 router.get('/', function(req, res, next) {
   Produto.find().exec(function(err, produtos) {
     if (err) {
-        next(err);
-    } else {
-        res.json(produtos);
+        return next(err);
     }
+    res.json(produtos);
   });
 });
 
@@ -18,10 +17,9 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   new Produto(req.body).save(function(err, produto) {
     if (err) {
-        next(err);
-    } else {
-        res.json(produto);
+        return next(err);
     }
+    res.json(produto);
   });
 });
 
